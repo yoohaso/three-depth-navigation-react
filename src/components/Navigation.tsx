@@ -1,8 +1,10 @@
 interface NavigationProps {
+  id: string;
   title: string;
+  onHover: (id: string) => void;
 }
 
-export function Navigation({ title }: NavigationProps) {
+export function Navigation({ id, title, onHover }: NavigationProps) {
   return (
     <div
       style={{
@@ -16,6 +18,8 @@ export function Navigation({ title }: NavigationProps) {
         cursor: 'pointer',
         margin: '2px',
       }}
+      onFocus={() => onHover(id)}
+      onPointerMove={() => onHover(id)}
     >
       {title}
     </div>

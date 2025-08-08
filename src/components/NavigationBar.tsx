@@ -6,11 +6,15 @@ const navigationData = [
   { id: uuid4(), title: 'B' },
 ];
 
-export function NavigationBar() {
+interface NavigationBarProps {
+  onHover: (id: string) => void;
+}
+
+export function NavigationBar({ onHover }: NavigationBarProps) {
   return (
     <div style={{ display: 'flex' }}>
       {navigationData.map(data => (
-        <Navigation key={data.id} title={data.title} />
+        <Navigation key={data.id} id={data.id} title={data.title} onHover={onHover} />
       ))}
     </div>
   );
