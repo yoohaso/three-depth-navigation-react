@@ -3,7 +3,6 @@ import { fetchFlattenMenu } from '../api/menu';
 import type { FlattenMenu } from '../api/type';
 import { MenuList } from './MenuList';
 
-// 선택된 네비게이션에 따른 메뉴 정보 보여주기
 interface MenuProps {
   id: string;
 }
@@ -29,9 +28,13 @@ export function Menu({ id }: MenuProps) {
     fetch();
   }, [id]);
 
-  return (
-    <div style={{ display: 'flex' }}>
-      {rootIds && menu && <MenuList itemIds={rootIds} menuById={menu} />}
-    </div>
-  );
+  if (menu) {
+    return (
+      <div style={{ display: 'flex' }}>
+        {rootIds && <MenuList itemIds={rootIds} menuById={menu} />}
+      </div>
+    );
+  }
+
+  return <></>;
 }

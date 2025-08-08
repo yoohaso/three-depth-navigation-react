@@ -12,12 +12,12 @@ export function MenuList({ itemIds, menuById }: MenuListProps) {
   const childIds = selectedId ? menuById[selectedId].children : [];
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div style={{ display: 'flex' }} onMouseLeave={() => setSelectedId(null)}>
       <ul
         style={{
           border: '1px solid #ffffff',
           width: '200px',
-          height: '200px',
+          height: 'auto',
           padding: '0 20px',
           boxSizing: 'border-box',
         }}
@@ -28,7 +28,8 @@ export function MenuList({ itemIds, menuById }: MenuListProps) {
               key={id}
               id={id}
               title={menuById[id].title}
-              onHover={id => setSelectedId(id)}
+              onSelect={id => setSelectedId(id)}
+              isSelected={id === selectedId}
             />
           ))}
       </ul>

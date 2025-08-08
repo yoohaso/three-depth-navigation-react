@@ -1,12 +1,16 @@
 interface MenuItemProps {
   id: string;
   title: string;
-  onHover: (id: string) => void;
+  onSelect: (id: string) => void;
+  isSelected: boolean;
 }
 
-export function MenuItem({ id, title, onHover }: MenuItemProps) {
+export function MenuItem({ id, title, onSelect, isSelected }: MenuItemProps) {
   return (
-    <li onFocus={() => onHover(id)} onPointerMove={() => onHover(id)} style={{ cursor: 'pointer' }}>
+    <li
+      onClick={() => onSelect(id)}
+      style={{ cursor: 'pointer', color: isSelected ? 'skyblue' : 'white' }}
+    >
       {title}
     </li>
   );

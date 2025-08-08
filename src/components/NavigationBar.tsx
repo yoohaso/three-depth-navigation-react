@@ -7,14 +7,21 @@ const navigationData = [
 ];
 
 interface NavigationBarProps {
-  onHover: (id: string) => void;
+  onSelect: (id: string) => void;
+  selectedId: string | null;
 }
 
-export function NavigationBar({ onHover }: NavigationBarProps) {
+export function NavigationBar({ onSelect, selectedId }: NavigationBarProps) {
   return (
     <div style={{ display: 'flex' }}>
       {navigationData.map(data => (
-        <Navigation key={data.id} id={data.id} title={data.title} onHover={onHover} />
+        <Navigation
+          key={data.id}
+          id={data.id}
+          title={data.title}
+          onSelect={onSelect}
+          isSelected={data.id === selectedId}
+        />
       ))}
     </div>
   );

@@ -7,10 +7,10 @@ function App() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
-    <>
-      <NavigationBar onHover={id => setSelectedId(id)} />
+    <div onMouseLeave={() => setSelectedId(null)}>
+      <NavigationBar onSelect={id => setSelectedId(id)} selectedId={selectedId} />
       {selectedId && <Menu id={selectedId} />}
-    </>
+    </div>
   );
 }
 

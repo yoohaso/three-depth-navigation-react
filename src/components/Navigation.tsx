@@ -1,16 +1,18 @@
 interface NavigationProps {
   id: string;
   title: string;
-  onHover: (id: string) => void;
+  onSelect: (id: string) => void;
+  isSelected: boolean;
 }
 
-export function Navigation({ id, title, onHover }: NavigationProps) {
+export function Navigation({ id, title, onSelect, isSelected }: NavigationProps) {
   return (
     <div
       style={{
         width: '80px',
         height: '40px',
-        border: '1px solid #ffffff',
+        border: `1px solid ${isSelected ? 'skyblue' : '#ffffff'}`,
+        color: isSelected ? 'skyblue' : '#ffffff',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -18,8 +20,7 @@ export function Navigation({ id, title, onHover }: NavigationProps) {
         cursor: 'pointer',
         margin: '2px',
       }}
-      onFocus={() => onHover(id)}
-      onPointerMove={() => onHover(id)}
+      onClick={() => onSelect(id)}
     >
       {title}
     </div>
