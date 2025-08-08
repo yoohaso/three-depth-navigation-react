@@ -4,9 +4,7 @@ export interface MenuItem {
   children?: MenuItem[];
 }
 
-export interface FlattenMenu {
-  [id: string]: FlattenMenuItem;
-}
+export type FlattenMenu = Record<string, FlattenMenuItem>;
 
 export interface FlattenMenuItem {
   id: string;

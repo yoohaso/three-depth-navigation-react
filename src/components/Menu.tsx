@@ -10,10 +10,10 @@ interface MenuProps {
 
 export function Menu({ id }: MenuProps) {
   const [menu, setMenu] = useState<FlattenMenu | null>(null);
-  const root = menu
+  const rootIds = menu
     ? Object.entries(menu)
         .filter(([, item]) => item.depth === 0)
-        .map(([, item]) => item)
+        .map(([, item]) => item.id)
     : null;
 
   useEffect(() => {
@@ -29,5 +29,9 @@ export function Menu({ id }: MenuProps) {
     fetch();
   }, [id]);
 
-  return <div style={{ display: 'flex' }}>{root && <MenuList menu={root} />}</div>;
+  return (
+    <div style={{ display: 'flex' }}>
+      {rootIds && menu && <MenuList itemIds={rootIds} menuById={menu} />}
+    </div>
+  );
 }
