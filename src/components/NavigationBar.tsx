@@ -1,20 +1,15 @@
 import { Navigation } from './Navigation';
-import { v4 as uuid4 } from 'uuid';
-
-const navigationData = [
-  { id: uuid4(), title: 'A' },
-  { id: uuid4(), title: 'B' },
-];
 
 interface NavigationBarProps {
   onSelect: (id: string) => void;
   selectedId: string | null;
+  navigation: { id: string; title: string }[];
 }
 
-export function NavigationBar({ onSelect, selectedId }: NavigationBarProps) {
+export function NavigationBar({ onSelect, selectedId, navigation }: NavigationBarProps) {
   return (
     <div style={{ display: 'flex' }}>
-      {navigationData.map(data => (
+      {navigation.map(data => (
         <Navigation
           key={data.id}
           id={data.id}

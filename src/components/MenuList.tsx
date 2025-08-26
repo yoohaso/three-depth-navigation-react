@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import type { FlattenMenu } from '../api/type';
+import type { MenuItem as MenuItemType } from '../api/type';
 import { MenuItem } from './MenuItem';
 
 interface MenuListProps {
-  itemIds: string[];
-  menuById: FlattenMenu;
+  menu: MenuItemType[];
 }
 
-export function MenuList({ itemIds, menuById }: MenuListProps) {
+export function MenuList({ menu }: MenuListProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const childIds = selectedId ? menuById[selectedId].children : [];
+  const subMenu = menu.find(data => data.id === selectedId)?.children || [];
 
   return (
     <div style={{ display: 'flex' }} onMouseLeave={() => setSelectedId(null)}>
@@ -22,18 +21,17 @@ export function MenuList({ itemIds, menuById }: MenuListProps) {
           boxSizing: 'border-box',
         }}
       >
-        {itemIds &&
-          itemIds.map(id => (
-            <MenuItem
-              key={id}
-              id={id}
-              title={menuById[id].title}
-              onSelect={id => setSelectedId(id)}
-              isSelected={id === selectedId}
-            />
-          ))}
+        {menu.map(item => (
+          <MenuItem
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            onSelect={id => setSelectedId(id)}
+            isSelected={item.id === selectedId}
+          />
+        ))}
       </ul>
-      {selectedId && childIds.length > 0 && <MenuList itemIds={childIds} menuById={menuById} />}
+      {selectedId && subMenu.length > 0 && <MenuList menu={subMenu} />}
     </div>
   );
 }
