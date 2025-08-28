@@ -14,7 +14,7 @@ export function MenuList({ menu }: MenuListProps) {
     <div style={{ display: 'flex' }} onMouseLeave={() => setSelectedId(null)}>
       <ul
         style={{
-          border: '1px solid #ffffff',
+          borderRight: '1px solid #ffffff',
           width: '200px',
           height: 'auto',
           padding: '0 20px',

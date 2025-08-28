@@ -9,7 +9,7 @@ export function Navigation({ id, title, onSelect, isSelected }: NavigationProps)
   return (
     <div
       style={{
-        width: '80px',
+        width: 'auto',
         height: '40px',
         border: `1px solid ${isSelected ? 'skyblue' : '#ffffff'}`,
         color: isSelected ? 'skyblue' : '#ffffff',
@@ -19,6 +19,7 @@ export function Navigation({ id, title, onSelect, isSelected }: NavigationProps)
         borderRadius: '10px',
         cursor: 'pointer',
         margin: '2px',
+        padding: '0 8px',
       }}
       onClick={() => onSelect(id)}
     >

@@ -8,7 +8,7 @@ interface MenuProps {
 export function Menu({ menu }: MenuProps) {
   if (menu) {
     return (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', width: '100%', height: '200px', border: '1px solid #ffffff' }}>
         <MenuList menu={menu} />
       </div>
     );
